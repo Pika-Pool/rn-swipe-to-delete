@@ -1,11 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import React, { useCallback, useState } from 'react'
 import { SafeAreaView, StyleSheet, Text } from 'react-native'
-import {
-	FlatList,
-	GestureHandlerRootView,
-	ScrollView,
-} from 'react-native-gesture-handler'
+import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler'
 import ListItem from './components/ListItem'
 
 const titles = [
@@ -57,15 +53,14 @@ export default function App() {
 				<StatusBar style='auto' />
 				<Text style={styles.title}>TASKS</Text>
 
-				<ScrollView style={styles.list}>
-					<FlatList
-						data={tasks}
-						renderItem={({ item: task }) => (
-							<ListItem onTaskDismiss={onTaskDelete(task.id)} task={task} />
-						)}
-						keyExtractor={task => task.id.toString()}
-					/>
-				</ScrollView>
+				<FlatList
+					style={styles.list}
+					data={tasks}
+					renderItem={({ item: task }) => (
+						<ListItem onTaskDismiss={onTaskDelete(task.id)} task={task} />
+					)}
+					keyExtractor={task => task.id.toString()}
+				/>
 			</SafeAreaView>
 		</GestureHandlerRootView>
 	)
